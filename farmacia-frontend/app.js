@@ -1,7 +1,7 @@
 // ============================================================
 // Troque pela URL do seu backend no Render após o deploy
 // ============================================================
-const API_BASE     = 'https://SEU-BACKEND.onrender.com';
+const API_BASE = 'https://farmacia-backend-4rfz.onrender.com';
 const CLIENTES_URL = `${API_BASE}/api/clientes`;
 const RECEITAS_URL = `${API_BASE}/api/receitas`;
 
