@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <title>FarmaSystem</title>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <span class="logo-icon">⚕</span>
+      <span class="logo-text">FarmaSystem</span>
+    </div>
+    <nav class="sidebar-nav">
+      <button class="nav-btn active" data-tab="clientes">
+        <span class="nav-icon">👥</span> Clientes
+      </button>
+      <button class="nav-btn" data-tab="receitas">
+        <span class="nav-icon">📋</span> Receitas
+      </button>
+    </nav>
+    <div class="sidebar-footer">Sistema de Gestão</div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+
+    <!-- Header -->
+    <header class="topbar">
+      <div>
+        <h1 class="page-title" id="page-title">Clientes</h1>
+        <p class="page-sub" id="page-sub">Gerencie os clientes da farmácia</p>
+      </div>
+      <button class="btn-primary" id="btn-new">+ Novo Cliente</button>
+    </header>
+
+    <!-- ===== CLIENTES ===== -->
+    <section id="tab-clientes">
+      <!-- Search -->
+      <div class="search-bar">
+        <input type="text" id="search-cliente" placeholder="Buscar por nome ou CPF..." />
+      </div>
+
+      <!-- Form -->
+      <div class="card form-card hidden" id="cliente-form-card">
+        <div class="card-header">
+          <h2 id="cliente-form-title">Novo Cliente</h2>
+          <button class="btn-close" id="close-cliente-form">✕</button>
+        </div>
+        <form id="cliente-form">
+          <input type="hidden" id="cliente-id" />
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Nome completo *</label>
+              <input type="text" id="cliente-nome" required />
+            </div>
+            <div class="form-group">
+              <label>CPF *</label>
+              <input type="text" id="cliente-cpf" placeholder="000.000.000-00" required />
+            </div>
+            <div class="form-group">
+              <label>Telefone</label>
+              <input type="text" id="cliente-telefone" placeholder="(00) 00000-0000" />
+            </div>
+            <div class="form-group">
+              <label>E-mail</label>
+              <input type="email" id="cliente-email" />
+            </div>
+            <div class="form-group">
+              <label>Data de nascimento *</label>
+              <input type="date" id="cliente-dataNascimento" required />
+            </div>
+            <div class="form-group full">
+              <label>Endereço</label>
+              <input type="text" id="cliente-endereco" />
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">Salvar Cliente</button>
+            <button type="button" class="btn-secondary" id="cancel-cliente">Cancelar</button>
+          </div>
+          <p id="cliente-message" class="form-message"></p>
+        </form>
+      </div>
+
+      <!-- List -->
+      <div id="clientes-list" class="cards-list"></div>
+    </section>
+
+    <!-- ===== RECEITAS ===== -->
+    <section id="tab-receitas" class="hidden">
+      <!-- Filter -->
+      <div class="search-bar">
+        <select id="filter-cliente-receita">
+          <option value="">Todos os clientes</option>
+        </select>
+      </div>
+
+      <!-- Form -->
+      <div class="card form-card hidden" id="receita-form-card">
+        <div class="card-header">
+          <h2 id="receita-form-title">Nova Receita</h2>
+          <button class="btn-close" id="close-receita-form">✕</button>
+        </div>
+        <form id="receita-form">
+          <input type="hidden" id="receita-id" />
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Cliente *</label>
+              <select id="receita-cliente" required>
+                <option value="">Selecione...</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Médico *</label>
+              <input type="text" id="receita-medico" required />
+            </div>
+            <div class="form-group">
+              <label>CRM *</label>
+              <input type="text" id="receita-crm" required />
+            </div>
+            <div class="form-group">
+              <label>Status</label>
+              <select id="receita-status">
+                <option>Pendente</option>
+                <option>Dispensada</option>
+                <option>Vencida</option>
+                <option>Cancelada</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Data de emissão *</label>
+              <input type="date" id="receita-dataEmissao" required />
+            </div>
+            <div class="form-group">
+              <label>Data de validade *</label>
+              <input type="date" id="receita-dataValidade" required />
+            </div>
+            <div class="form-group full">
+              <label>Medicamentos *</label>
+              <textarea id="receita-medicamentos" rows="3" required placeholder="Ex: Amoxicilina 500mg — 1 cápsula 8/8h por 7 dias"></textarea>
+            </div>
+            <div class="form-group full">
+              <label>Observações</label>
+              <textarea id="receita-observacoes" rows="2"></textarea>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">Salvar Receita</button>
+            <button type="button" class="btn-secondary" id="cancel-receita">Cancelar</button>
+          </div>
+          <p id="receita-message" class="form-message"></p>
+        </form>
+      </div>
+
+      <!-- List -->
+      <div id="receitas-list" class="cards-list"></div>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
